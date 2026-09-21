@@ -3427,15 +3427,9 @@ mod tests {
 }
 
 fn apply_builtin_server_config() {
-    // ---- 1. 预置服务器配置 ----
-    {
-        let mut s = config::OVERWRITE_SETTINGS.write().unwrap();
-        s.insert("custom-rendezvous-server".to_owned(), "8.137.79.94".to_owned());
-        s.insert("relay-server".to_owned(), "8.137.79.94".to_owned());
-        s.insert("api-server".to_owned(), "http://8.137.79.94:21114".to_owned());
-        s.insert("key".to_owned(), "m+HYZ5HW9CtJoX7j2yPMTgtaa1t1WJXSwptTeP9hDbI=".to_owned());
-    }
-
-    // ---- 2. 品牌名（等价于官方 custom client 的 app-name）----
-    *config::APP_NAME.write().unwrap() = "GuizhouRemot".to_owned();
+    let mut s = config::OVERWRITE_SETTINGS.write().unwrap();
+    s.insert("custom-rendezvous-server".to_owned(), "8.137.79.94".to_owned());
+    s.insert("relay-server".to_owned(), "8.137.79.94".to_owned());
+    s.insert("api-server".to_owned(), "http://8.137.79.94:21114".to_owned());
+    s.insert("key".to_owned(), "m+HYZ5HW9CtJoX7j2yPMTgtaa1t1WJXSwptTeP9hDbI=".to_owned());
 }
