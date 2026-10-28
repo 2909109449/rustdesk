@@ -1,0 +1,12 @@
+on:
+  workflow_call:
+    inputs:
+      qianxi_app_name:
+        type: string
+        required: false
+        default: ""
+jobs:
+  x:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo A ok ${{ inputs.qianxi_app_name }}
