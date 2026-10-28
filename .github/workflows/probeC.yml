@@ -1,0 +1,6 @@
+name: probe-tC-pristine
+on:
+  workflow_dispatch:
+jobs:
+  c:
+    uses: ./.github/workflows/tC.yml
