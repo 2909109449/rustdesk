@@ -1,0 +1,10 @@
+name: probe-official-inputs
+on:
+  workflow_dispatch:
+jobs:
+  b:
+    uses: ./.github/workflows/flutter-build.yml
+    with:
+      upload-artifact: true
+      upload-tag: probe
+    secrets: inherit
