@@ -1,6 +1,0 @@
-name: probe-tB
-on:
-  workflow_dispatch:
-jobs:
-  c:
-    uses: ./.github/workflows/tB.yml
