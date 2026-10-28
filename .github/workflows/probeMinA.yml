@@ -1,0 +1,6 @@
+name: probe-miniA
+on:
+  workflow_dispatch:
+jobs:
+  c:
+    uses: ./.github/workflows/miniA.yml
