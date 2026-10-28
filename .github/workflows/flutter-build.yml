@@ -38,11 +38,6 @@ on:
 # in this file!
 
 env:
-  QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
-  QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
-  QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
-  QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
-  QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
   SCITER_RUST_VERSION: "1.75" # https://github.com/rustdesk/rustdesk/discussions/7503, also 1.78 has ABI change which causes our sciter version not working, https://blog.rust-lang.org/2024/03/30/i128-layout-update.html
   RUST_VERSION: "1.75" # sciter failed on m1 with 1.78 because of https://blog.rust-lang.org/2024/03/30/i128-layout-update.html
   MAC_RUST_VERSION: "1.81" # 1.81 is requred for macos, because of https://github.com/yury/cidre requires 1.81
@@ -93,6 +88,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -180,6 +181,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -531,6 +538,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -696,6 +709,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -829,6 +848,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -1176,6 +1201,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -1454,6 +1485,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -1627,6 +1664,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -1959,6 +2002,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -2282,6 +2331,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -2504,6 +2559,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -2585,6 +2646,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
@@ -2651,6 +2718,12 @@ jobs:
 
       - name: Apply Qianxi branding (name/servers/icons)
         shell: bash
+        env:
+          QIANXI_APP_NAME: ${{ inputs.qianxi_app_name }}
+          QIANXI_ID_SERVER: ${{ inputs.qianxi_id_server }}
+          QIANXI_RELAY_SERVER: ${{ inputs.qianxi_relay_server }}
+          QIANXI_API_SERVER: ${{ inputs.qianxi_api_server }}
+          QIANXI_PUBLIC_KEY: ${{ inputs.qianxi_public_key }}
         run: |
           python3 branding/apply-branding.py --repo .
 
