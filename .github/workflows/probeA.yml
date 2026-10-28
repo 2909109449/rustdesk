@@ -1,0 +1,6 @@
+name: probe-tA
+on:
+  workflow_dispatch:
+jobs:
+  c:
+    uses: ./.github/workflows/tA.yml
