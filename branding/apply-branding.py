@@ -236,7 +236,7 @@ fn {GUARD_FN}() {{
         if not (self.repo / rel).is_file():
             return  # 非 Linux 源码树不会有这个文件
         src = self.read(rel)
-        src = self.sub_once(src, r"^Name=.*$", f"Name={APP_NAME}", "desktop Name")
+        src = self.sub_once(src, r"(?m)^Name=.*$", f"Name={APP_NAME}", "desktop Name")
         self.write(rel, src)
         for rel_png, size in [
             ("res/32x32.png", 32),
@@ -253,7 +253,7 @@ fn {GUARD_FN}() {{
         if not (self.repo / rel).is_file():
             return
         src = self.read(rel)
-        src = self.sub_once(src, r"^PRODUCT_NAME = .*$", f"PRODUCT_NAME = {APP_NAME}", "AppInfo.xcconfig PRODUCT_NAME")
+        src = self.sub_once(src, r"(?m)^PRODUCT_NAME = .*$", f"PRODUCT_NAME = {APP_NAME}", "AppInfo.xcconfig PRODUCT_NAME")
         self.write(rel, src)
 
     def run(self):
