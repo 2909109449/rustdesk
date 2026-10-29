@@ -249,6 +249,24 @@ fn {GUARD_FN}() {{
             self._resize_png(size, self.repo / rel_png)
             self.changed.append(rel_png)
 
+    # ---------------- 5b. 给便携打包器加错误日志（诊断 exe 解压失败）----------------
+    def patch_packer_logging(self):
+        rel = "libs/portable/src/main.rs"
+        if not (self.repo / rel).is_file():
+            return
+        src = self.read(rel)
+        if "WRITE-FAIL" in src:
+            return
+        src = src.replace(
+            "        let _ = fs::write(p, self.decompress());",
+            '        if let Err(e) = fs::write(&p, self.decompress()) {\n            println!("WRITE-FAIL {}: {}", p.display(), e);\n        }',
+        )
+        src = src.replace(
+            "    let mut metadata_paths = reader.package_paths.clone();",
+            '    println!("EXTRACT {} files -> {}", reader.files.len(), dir.display());\n    let mut metadata_paths = reader.package_paths.clone();',
+        )
+        self.write(rel, src)
+
     # ---------------- 6. macOS：应用名 ----------------
     def patch_macos(self):
         rel = "flutter/macos/Runner/Configs/AppInfo.xcconfig"
@@ -257,6 +275,11 @@ fn {GUARD_FN}() {{
         src = self.read(rel)
         src = self.sub_once(src, r"(?m)^PRODUCT_NAME = .*$", f"PRODUCT_NAME = {APP_NAME}", "AppInfo.xcconfig PRODUCT_NAME")
         self.write(rel, src)
+        # build.py 里把 RustDesk.app 写死了，应用名改了必须一起改
+        bp = "build.py"
+        bsrc = self.read(bp)
+        if "RustDesk.app" in bsrc:
+            self.write(bp, bsrc.replace("RustDesk.app", f"{APP_NAME}.app"))
 
     def run(self):
         self.patch_hbb_config()
@@ -266,6 +289,7 @@ fn {GUARD_FN}() {{
         self.patch_msi_preprocess()
         self.patch_linux()
         self.patch_macos()
+        self.patch_packer_logging()
 
 
 def main() -> int:
