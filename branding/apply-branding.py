@@ -236,7 +236,9 @@ fn {GUARD_FN}() {{
         if not (self.repo / rel).is_file():
             return  # 非 Linux 源码树不会有这个文件
         src = self.read(rel)
-        src = self.sub_once(src, r"(?m)^Name=.*$", f"Name={APP_NAME}", "desktop Name")
+        src, n = re.subn(r"(?m)^Name=.*$", f"Name={APP_NAME}", src, count=1)
+        if n != 1:
+            self.die("desktop Name 锚点未命中（res/rustdesk.desktop 结构变了？）")
         self.write(rel, src)
         for rel_png, size in [
             ("res/32x32.png", 32),
