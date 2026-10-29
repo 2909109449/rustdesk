@@ -111,6 +111,24 @@ jobs:
           syft dir:. \
             -o cyclonedx-json=rustdesk.sbom.json
 
+      - name: Smoke test portable exe（CI 内验证 SFX 能否解压运行）
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem ./SignOutput/*.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $exe) { Write-Host "::warning::没有找到便携 exe"; exit 0 }
+          Write-Host "SFX: $($exe.FullName)  $([math]::Round($exe.Length/1MB,1))MB"
+          $dir = Join-Path $env:LOCALAPPDATA 'rustdesk'
+          if (Test-Path $dir) { Remove-Item -Recurse -Force $dir }
+          $p = Start-Process -FilePath $exe.FullName -ArgumentList '--version' -PassThru -NoNewWindow -RedirectStandardOutput out.txt -RedirectStandardError err.txt
+          $null = $p.WaitForExit(90000)
+          Write-Host "exit=$($p.ExitCode)"
+          Write-Host "--- stdout ---"
+          Get-Content out.txt -ErrorAction SilentlyContinue | Select-Object -First 40
+          Write-Host "--- stderr ---"
+          Get-Content err.txt -ErrorAction SilentlyContinue | Select-Object -First 20
+          Write-Host "extract dir exists: $(Test-Path $dir)"
+          if (Test-Path $dir) { Get-ChildItem $dir | Select-Object -First 8 -ExpandProperty Name } else { Write-Host "::error::SFX 没有解压任何文件（解压失败）" }
+
       - name: Publish Release
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
         if: env.UPLOAD_ARTIFACT == 'true'
@@ -1978,7 +1996,6 @@ jobs:
   # old for it. A separate job rather than a matrix entry of build-rustdesk-linux: appimage and
   # flatpak need that job, and a failure here must not skip them.
   build-rustdesk-linux-drm:
-    if: False
     needs: [generate-bridge]
     name: build rustdesk linux drm x86_64
     runs-on: ubuntu-22.04
